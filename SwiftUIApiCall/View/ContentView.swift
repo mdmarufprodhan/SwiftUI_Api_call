@@ -20,7 +20,7 @@ struct ContentView: View {
             .navigationTitle("Courses")
             .onAppear{
                // viewModel.fetch()
-                viewModel.fetchGeneric()
+                viewModel.fetch()
                 
             }
         }
