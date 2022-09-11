@@ -20,7 +20,8 @@ struct ContentView: View {
             .navigationTitle("Courses")
             .onAppear{
                // viewModel.fetch()
-                viewModel.fetch()
+               // viewModel.fetch()
+                viewModel.fetchWithAlamofire()
                 
             }
         }

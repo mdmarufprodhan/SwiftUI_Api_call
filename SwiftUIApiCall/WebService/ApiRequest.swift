@@ -6,9 +6,32 @@
 //
 
 import Foundation
-//
+import Alamofire
+
 
 class APIService {
+    
+    static func getRequestWithAlamofire(url:String ,completion: @escaping ([Course])->Void){
+        let headers: HTTPHeaders = [
+           // "Authorization": "Basic VXNlcm5hbWU6UGFzc3dvcmQ=",
+            "Accept": "application/json"
+        ]
+
+        AF.request(url, headers: headers).responseDecodable(of:[Course].self) { response in
+            debugPrint(response)
+            switch response.result {
+                
+            case .success(let data):
+                completion(data)
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+    }
+    
+    
+    
     static func getRequest(url:String ,completion: @escaping([Course])->Void ){
         
         guard let url  = URL(string: url) else {

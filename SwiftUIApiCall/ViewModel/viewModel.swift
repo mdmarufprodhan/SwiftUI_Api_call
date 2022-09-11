@@ -9,12 +9,19 @@ import Foundation
 import SwiftUI
 
 class ViewModel: ObservableObject {
+    let getUrl = "https://iosacademy.io/api/v1/courses/index.php"
     @Published var courses : [Course] = []
     func fetch(){
-        APIService.getRequest(url:"https://iosacademy.io/api/v1/courses/index.php") {[weak self] courses in
+        APIService.getRequest(url:getUrl) {[weak self] courses in
             self?.courses = courses
         }
         
+    }
+    
+    func fetchWithAlamofire(){
+        APIService.getRequestWithAlamofire(url:getUrl) { [weak self]  courses in
+            self?.courses = courses
+        }
     }
     
     func fetchGeneric(){
